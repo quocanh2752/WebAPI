@@ -1,6 +1,7 @@
 ﻿namespace WebAPI.Models
 {
-    public class Product
+    //Người dùng
+    public class User
     {
     }
 }
