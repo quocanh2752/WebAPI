@@ -1,7 +1,7 @@
 ﻿namespace WebAPI.Models
 {
 
-    public class JobapplicantSkills
+    public class ApplicantSkills
     {
     }
 }
