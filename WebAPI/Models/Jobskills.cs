@@ -1,6 +1,7 @@
 ﻿namespace WebAPI.Models
 {
-    public class Jobskills
+    //Kĩ năng Công việc
+    public class JobSkills
     {
     }
 }

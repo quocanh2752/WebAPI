@@ -1,6 +1,7 @@
 ﻿namespace WebAPI.Models
 {
-    public class jobseekers
+    //Người tìm việc
+    public class jobSeekers
     {
     }
 }

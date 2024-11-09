@@ -1,6 +1,7 @@
 ﻿namespace WebAPI.Models
 {
-    public class Decentralization
+
+    public class JobapplicantSkills
     {
     }
 }
