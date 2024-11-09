@@ -16,7 +16,7 @@ namespace WebAPI.Data
 
         public DbSet<Job> Job { get; set; }
 
-        public DbSet<jobSeekers> JobSeekers { get; set; }
+        public DbSet<JobSeeker> JobSeeker { get; set; }
 
         public DbSet<JobSkills> JobSkills { get; set; }
 
@@ -26,11 +26,11 @@ namespace WebAPI.Data
 
         public DbSet<Provinces> Provinces { get; set; }
 
-        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Review> Review { get; set; }
 
-        public DbSet<Skillscategory> skillscategories {  get; set; }
+        public DbSet<Skillscategory> skillscategory {  get; set; }
         
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
         
         public DbSet<Wards> Wards { get; set; }
 
