@@ -6,9 +6,7 @@ namespace WebAPI.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Apply> applies { get; set; }
-
-        public DbSet<Buni>
+        public DbSet<User> Users { get; set; }
 
         
     }
