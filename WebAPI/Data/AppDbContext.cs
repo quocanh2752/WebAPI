@@ -6,34 +6,67 @@ namespace WebAPI.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<ApplicantSkills> ApplicantSkills { get; set; }
+        // Các DbSet hiện tại
+        public DbSet<User> Users { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<JobSeeker> JobSeekers { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Application> Applications { get; set; }
+        public DbSet<ApplicantSkill> ApplicantSkills { get; set; }
+        public DbSet<JobSkill> JobSkills { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Ward> Wards { get; set; }
 
-        public DbSet<Application> Application { get; set; }
+        // Thêm các DbSet mới
+        public DbSet<Employer> Employers { get; set; }
+        public DbSet<SkillCategory> SkillCategories { get; set; }
 
-        public DbSet<Company> Company { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        public DbSet<Districts> Districts { get; set; }
+            // Thêm cấu hình cho các bảng mới nếu cần
+            modelBuilder.Entity<Employer>(entity =>
+            {
+                entity.HasKey(e => e.EmployerId);
 
-        public DbSet<Job> Job { get; set; }
+                entity.HasOne(e => e.User)
+                    .WithOne()
+                    .HasForeignKey<Employer>(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
-        public DbSet<JobSeeker> JobSeeker { get; set; }
+                entity.Property(e => e.CompanyName)
+                    .IsRequired()
+                    .HasMaxLength(200);
 
-        public DbSet<JobSkills> JobSkills { get; set; }
+                entity.Property(e => e.Address)
+                    .HasMaxLength(300);
 
-        public DbSet<Notification> Notification { get; set; }
+                entity.Property(e => e.WebsiteUrl)
+                    .HasMaxLength(300);
+            });
 
-        public DbSet<Permissions> Permissions { get; set; }
+            modelBuilder.Entity<SkillCategory>(entity =>
+            {
+                entity.HasKey(sc => sc.SkillCategoryId);
 
-        public DbSet<Provinces> Provinces { get; set; }
+                entity.Property(sc => sc.SkillName)
+                    .IsRequired()
+                    .HasMaxLength(100);
 
-        public DbSet<Review> Review { get; set; }
+                entity.Property(sc => sc.Description)
+                    .HasMaxLength(300);
+            });
 
-        public DbSet<Skillscategory> skillscategory {  get; set; }
-        
-        public DbSet<User> User { get; set; }
-        
-        public DbSet<Wards> Wards { get; set; }
-
-        
+            // Seed dữ liệu nếu cần
+            modelBuilder.Entity<Permission>().HasData(
+                new Permission { RoleId = 1, RoleName = "Admin" },
+                new Permission { RoleId = 2, RoleName = "Doanh nghiệp" },
+                new Permission { RoleId = 3, RoleName = "Người tìm việc" }
+            );
+        }
     }
 }

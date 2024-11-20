@@ -1,7 +1,16 @@
-﻿namespace WebAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebAPI.Models
 {
     //Phân Quyền
-    public class Permissions
+    // Bảng Permissions
+    public class Permission
     {
+        [Key]
+        public int RoleId { get; set; }
+
+        [Required]
+        public string RoleName { get; set; }
     }
+
 }
